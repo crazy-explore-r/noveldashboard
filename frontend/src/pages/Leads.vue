@@ -4,48 +4,44 @@
 
 <script setup>
 import ListView from '../components/ListView.vue'
+import { computed } from 'vue'
+import { createListResource } from 'frappe-ui'
+
 const title = 'Leads'
+
+const leads = createListResource({
+  type: 'list',
+  doctype: 'Leads',
+  fields: [
+    'name',
+    'name1',
+    'modified',
+  ],
+  orderBy: 'modified asc',
+  cache: 'Leads',
+  pageLength: 999,
+  auto: true,
+})
+leads.fetch()
+
 const columns = [
   {
-    label: 'Title',
-    key: 'title',
-    size: 'flex-1',
-  },
-  {
-    label: 'Company',
-    key: 'company',
+    label: 'ID',
+    key: 'name',
     size: 'w-44',
   },
   {
-    label: 'Stage',
-    key: 'stage',
-    size: 'w-40',
-  },
-  {
-    label: 'Contact',
-    key: 'contact',
+    label: 'Name',
+    key: 'name1',
     size: 'w-44',
-  },
-  {
-    label: 'Closed Date',
-    key: 'closedDate',
-    size: 'w-44',
-  },
-  {
-    label: 'Value',
-    key: 'value',
-    size: 'w-40',
-    align: 'text-right',
   },
 ]
-const rows = [
-  {
-    title: 'Summer Catalog',
-    company: 'Stripe',
-    stage: 'Qualified',
-    contact: 'Angela Bower',
-    closedDate: '27 Sept, 2023',
-    value: 99000.0,
-  },
-]
+const rows = computed(() => {
+  return leads.data?.map((lead) => {
+    return {
+      name: lead.name,
+      name1: lead.name1
+    }
+  })
+})
 </script>
