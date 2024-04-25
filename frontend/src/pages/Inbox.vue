@@ -1,9 +1,8 @@
 <template>
-    <div class="px-6 py-4 font-semibold text-xl">
-      <h1>{{ title }}</h1>
-    </div>
-  </template>
+  <ListView :title="title" />
+</template>
   
-  <script setup>
-  let title = 'Inbox'
-  </script>
+<script setup>
+import ListView from '../components/ListView.vue'
+let title = 'Inbox'
+</script>
