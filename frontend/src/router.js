@@ -7,9 +7,9 @@ const routes = [
     redirect: '/dashboard',
   },
   {
-    path: '/leads',
-    name: 'Leads',
-    component: () => import('@/pages/Leads.vue'),
+    path: '/lead',
+    name: 'Lead',
+    component: () => import('@/pages/Lead.vue'),
   },
   {
     path: '/deals',

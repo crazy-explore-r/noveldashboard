@@ -39,9 +39,9 @@ const navigations = [
     route: { name: 'Dashboard' },
   },
   {
-    name: 'Leads',
+    name: 'Lead',
     icon: LeadsIcon,
-    route: { name: 'Leads' },
+    route: { name: 'Lead' },
   },
   {
     name: 'Inbox',
