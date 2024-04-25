@@ -3,9 +3,9 @@ import { createResource } from 'frappe-ui'
 import router from '@/router'
 import { computed } from 'vue'
 
-export const sessionStore = defineStore('crm-session', () => {
+export const sessionStore = defineStore('dashboard-session', () => {
   const sessionUser = createResource({
-    url: 'crm.api.session.get_user_info',
+    url: 'noveldashboard.api.session.get_user_info',
   })
 
   const user = computed(() => sessionUser.data || null)

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { session } from './data/session'
 import { userResource } from '@/data/user'
+import { sessionStore } from '@/stores/session'
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
   },
   {
     name: 'Login',
-    path: '/account/login',
+    path: '/login',
     component: () => import('@/pages/Login.vue'),
   },
 ]
@@ -40,16 +41,14 @@ let router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  let isLoggedIn = session.isLoggedIn
-  try {
-    await userResource.promise
-  } catch (error) {
-    isLoggedIn = false
-  }
+  const session = sessionStore()
 
-  if (to.name === 'Login' && isLoggedIn) {
-    next({ name: 'Home' })
-  } else if (to.name !== 'Login' && !isLoggedIn) {
+  // Initialize session
+  await session.init()
+
+  if (to.name === 'Login' && session.isLoggedIn) {
+    next({ name: 'Leads' })
+  } else if (to.name !== 'Login' && !session.isLoggedIn) {
     next({ name: 'Login' })
   } else {
     next()
