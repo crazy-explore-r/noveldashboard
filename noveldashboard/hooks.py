@@ -213,3 +213,5 @@ app_license = "MIT"
 # auth_hooks = [
 # 	"noveldashboard.auth.validate"
 # ]
+
+website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
