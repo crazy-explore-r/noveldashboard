@@ -1,11 +1,11 @@
 <template>
-    <div class="inline-flex h-full flex-col border-r w-[220px]">
-      <div class="flex p-2">
-        <h1 class="text-xl px-3 py-2">Frappe CRM</h1>
-      </div>
-      <div class="flex-1">
-        <nav class="space-y-0.5 px-2">
-          <NavLinks
+  <div class="inline-flex h-full flex-col border-r w-[220px]">
+    <div class="flex p-2">
+      <h1 class="text-xl px-3 py-2">Novelite</h1>
+    </div>
+    <div class="flex-1">
+      <nav class="space-y-0.5 px-2">
+        <NavLinks
           :links="navigations"
           class="flex items-center rounded px-2 py-1 text-gray-800 transition-all duration-300 ease-in-out"
           active="bg-gray-100 hover:bg-gray-200"
@@ -20,38 +20,26 @@
             </div>
           </template>
         </NavLinks>
-        </nav>
-      </div>
+      </nav>
     </div>
-  </template>
+  </div>
+</template>
   
   <script setup>
-  import LeadsIcon from './Icons/LeadsIcon.vue'
-  import DealsIcon from './Icons/DealsIcon.vue'
-  import InboxIcon from './Icons/InboxIcon.vue'
-  import DashboardIcon from './Icons/DashboardIcon.vue'
-  import NavLinks from './NavLinks.vue'
+import LeadsIcon from './Icons/LeadsIcon.vue'
+import DashboardIcon from './Icons/DashboardIcon.vue'
+import NavLinks from './NavLinks.vue'
 
-  const navigations = [
-    {
-      name: 'Inbox',
-      icon: InboxIcon,
-      route: { name: 'Inbox' },
-    },
-    {
-      name: 'Leads',
-      icon: LeadsIcon,
-      route: { name: 'Leads' },
-    },
-    {
-      name: 'Deals',
-      icon: DealsIcon,
-      route: { name: 'Deals' },
-    },
-    {
-      name: 'Dashboard',
-      icon: DashboardIcon,
-      route: { name: 'Dashboard' },
-    },
-  ]
-  </script>
+const navigations = [
+  {
+    name: 'Dashboard',
+    icon: DashboardIcon,
+    route: { name: 'Dashboard' },
+  },
+  {
+    name: 'Leads',
+    icon: LeadsIcon,
+    route: { name: 'Leads' },
+  },
+]
+</script>
