@@ -1,12 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { session } from './data/session'
-import { userResource } from '@/data/user'
 import { sessionStore } from '@/stores/session'
 
 const routes = [
   {
     path: '/',
-    redirect: '/leads',
+    redirect: '/dashboard',
   },
   {
     path: '/leads',
@@ -33,6 +31,11 @@ const routes = [
     path: '/login',
     component: () => import('@/pages/Login.vue'),
   },
+  {
+    path: '/:invalidpath',
+    name: 'Invalid Page',
+    component: () => import('@/pages/InvalidPage.vue'),
+  },
 ]
 
 let router = createRouter({
@@ -50,6 +53,8 @@ router.beforeEach(async (to, from, next) => {
     next({ name: 'Leads' })
   } else if (to.name !== 'Login' && !session.isLoggedIn) {
     next({ name: 'Login' })
+  } else if (to.matched.length === 0) {
+    next({ name: 'Invalid Page' })
   } else {
     next()
   }
