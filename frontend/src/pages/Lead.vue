@@ -19,6 +19,9 @@ const leads = createListResource({
     'lead_type',
     'modified',
   ],
+  filters:{
+    leasing_status: 'Client',
+  },
   orderBy: 'modified asc',
   cache: 'Leads',
   pageLength: 20,
