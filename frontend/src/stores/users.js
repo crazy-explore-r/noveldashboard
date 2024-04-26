@@ -9,7 +9,7 @@ export const usersStore = defineStore('crm-users', () => {
   let usersByName = reactive({})
 
   const users = createResource({
-    url: 'crm.api.session.get_users',
+    url: 'noveldashboard.api.session.get_users',
     cache: 'Users',
     initialData: [],
     transform(users) {

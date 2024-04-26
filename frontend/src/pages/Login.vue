@@ -1,37 +1,58 @@
 <template>
-  <div class="m-3 flex flex-row items-center justify-center">
-    <Card title="Login to your FrappeUI App!" class="w-full max-w-md mt-4">
-      <form class="flex flex-col space-y-2 w-full" @submit.prevent="submit">
-        <Input
-          required
-          name="email"
-          type="text"
-          placeholder="johndoe@email.com"
-          label="User ID"
-        />
-        <Input
-          required
-          name="password"
-          type="password"
-          placeholder="••••••"
-          label="Password"
-        />
-        <Button :loading="session.login.loading" variant="solid"
-          >Login</Button
-        >
-      </form>
-    </Card>
+  <div class="flex h-screen w-screen justify-center bg-gray-100">
+    <div class="mt-32 w-full px-4">
+      <div class="mx-auto mt-6 w-full px-4 sm:w-96">
+        <form method="POST" action="/api/method/login" @submit.prevent="submit">
+          <div>
+            <FormControl
+              variant="outline"
+              size="md"
+              :type="
+                (email || '').toLowerCase() === 'administrator'
+                  ? 'text'
+                  : 'email'
+              "
+              label="Email"
+              v-model="email"
+              placeholder="jane@example.com"
+              :disabled="session.login.loading"
+            />
+          </div>
+          <div class="mt-4">
+            <FormControl
+              variant="outline"
+              size="md"
+              label="Password"
+              v-model="password"
+              placeholder="••••••"
+              :disabled="session.login.loading"
+              type="password"
+            />
+          </div>
+          <ErrorMessage class="mt-2" :message="session.login.error" />
+          <Button
+            variant="solid"
+            class="mt-6 w-full"
+            :loading="session.login.loading"
+          >
+            Login
+          </Button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { session } from '../data/session'
-
-function submit(e) {
-  let formData = new FormData(e.target)
+<script setup>
+import { ref } from 'vue'
+import { FormControl, ErrorMessage } from 'frappe-ui'
+import { sessionStore } from '@/stores/session'
+const session = sessionStore()
+let email = ref('')
+let password = ref('')
+function submit() {
   session.login.submit({
-    email: formData.get('email'),
-    password: formData.get('password'),
+    usr: email.value,
+    pwd: password.value,
   })
 }
 </script>

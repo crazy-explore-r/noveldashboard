@@ -56,7 +56,7 @@ router.beforeEach(async (to, from, next) => {
   await users.promise
 
   if (to.name === 'Login' && isLoggedIn) {
-    next({ name: 'Leads' })
+    next({ name: 'Dashboard' })
   } else if (to.name !== 'Login' && !isLoggedIn) {
     next({ name: 'Login' })
   } else if (to.matched.length === 0) {

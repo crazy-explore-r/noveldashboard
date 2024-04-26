@@ -4,7 +4,7 @@ import { usersStore } from './users'
 import router from '@/router'
 import { ref, computed } from 'vue'
 
-export const sessionStore = defineStore('dashboard-session', () => {
+export const sessionStore = defineStore('crm-session', () => {
   const { users } = usersStore()
 
   function sessionUser() {
